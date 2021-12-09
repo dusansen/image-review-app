@@ -3,6 +3,7 @@ import { getRandomImage } from './api/api';
 import Image from './models/Image';
 import styled from 'styled-components';
 import ButtonProps from './models/Button.props';
+import { ImagePreview } from './components/ImagePreview';
 
 function App() {
   const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
@@ -21,8 +22,7 @@ function App() {
       <Header><h3>IMAGE APPROVAL APPLICATION</h3></Header>
       <main>
         <div className="approved-images"></div>
-        <div className="add-image-placeholder" />
-        {currentImage.url && <img src={currentImage.url} alt='random image' />}
+        <ImagePreview image={currentImage} onImageClick={onGetImageClickHandler} />
         <div className="action-buttons">
           <Button onClick={onGetImageClickHandler}>Cancel</Button>
           <Button buttonType='like' onClick={onGetImageClickHandler}>Like</Button>
@@ -51,12 +51,6 @@ const StyledWrapper = styled.div`
       width: 100%;
       height: 2rem;
       margin-bottom: 1rem;
-    }
-
-    .add-image-placeholder {
-      width: 40rem;
-      height: 25rem;
-      background-color: #dcdde1;
     }
     
     .action-buttons {
