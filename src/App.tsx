@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { getRandomImage } from './api/api';
+import Image from './models/Image';
 
 function App() {
+  const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
+
+  const onGetImageClickHandler = async () => {
+    const image = await getRandomImage();
+    if (!image) {
+      // show error
+      return;
+    }
+    setCurrentImage(image);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={onGetImageClickHandler}>Get Image</button>
+      {currentImage.url && <img src={currentImage.url} alt='random image' />}
     </div>
   );
 }
