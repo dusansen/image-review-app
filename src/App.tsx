@@ -7,6 +7,8 @@ import { getLikedImagesFromLocalStorage, getDeclinedImagesFromLocalStorage, save
 import { DECLINED_IMAGES_KEY, LIKED_IMAGES_KEY } from './utils/constants';
 import { ApprovedImages } from './components/ApprovedImages';
 import { Button } from './components/styled/Button';
+import { Header } from './components/styled/Header';
+import { Instructions } from './components/styled/Instructions';
 
 function App() {
   const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
@@ -87,17 +89,6 @@ const StyledWrapper = styled.div`
       margin-top: 1rem;
     }
   }
-`;
-
-const Header = styled.header`
-  text-align: left;
-  width: calc(100% - 4rem);
-  border-bottom: 2px solid #dcdde1;
-`;
-
-const Instructions = styled.p`
-  font-size: 0.8em;
-  color: #a5a5a5;
 `;
 
 export default App;
