@@ -9,6 +9,7 @@ import { ApprovedImages } from './components/ApprovedImages';
 import { Button } from './components/styled/Button';
 import { Header } from './components/styled/Header';
 import { Instructions } from './components/styled/Instructions';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
@@ -21,7 +22,6 @@ function App() {
     do {
       image = await getRandomImage();
       if (!image) {
-        // show error
         return;
       }
       isAlreadyDeclined = declinedImages.includes(image.id);
@@ -64,6 +64,17 @@ function App() {
             )
         }
       </main>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+      />
     </StyledWrapper>
   );
 }

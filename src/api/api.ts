@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Image from '../models/Image';
+import { toast } from 'react-toastify';
 
 const apiClient = axios.create({
   baseURL: 'https://api.unsplash.com',
@@ -22,10 +23,10 @@ export const getRandomImage = async () => {
         url: urls.regular
       } as Image;
     }
-    // Something went wrong
+    toast.error('Something went wrong');
     return null;
   } catch (error) {
-    console.log(error);
+    toast.error('Something went wrong');
     return null;
   }
 };
