@@ -85,7 +85,7 @@ const StyledWrapper = styled.div`
   align-items: center;
   background-color: #fff;
   width: calc(100% - 4rem);
-  padding: 0 2rem;
+  padding: 0 ${props => props.theme.pagePadding};
   height: 100%;
 
   main {

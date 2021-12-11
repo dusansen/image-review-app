@@ -18,8 +18,8 @@ export const ApprovedImages: FC<ApprovedImagesProps> = ({ images }) => {
 
 const StyledWrapper = styled.div`
   width: 100%;
-  padding: 1rem 1rem;
+  padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-top: 2px solid #dcdde1;
-  border-bottom: 2px solid #dcdde1;
+  border-top: ${props => props.theme.separatorBorder};
+  border-bottom: ${props => props.theme.separatorBorder};
 `;

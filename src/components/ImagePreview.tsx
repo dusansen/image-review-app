@@ -20,9 +20,10 @@ const AddImagePlaceholder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40rem;
-  height: 25rem;
+  width: ${props => props.theme.imageWidth};
+  height: ${props => props.theme.imageHeight};
   background-color: #dcdde1;
+  border-radius: ${props => props.theme.imageBorderRadius};
 
   img {
     width: 10rem;
@@ -32,7 +33,8 @@ const AddImagePlaceholder = styled.div`
 
 const Image = styled.img`
   max-width: 100%;
-  width: 40rem;
-  height: 25rem;
+  width: ${props => props.theme.imageWidth};
+  height: ${props => props.theme.imageHeight};
+  border-radius: ${props => props.theme.imageBorderRadius};
   object-fit: cover;
 `;
