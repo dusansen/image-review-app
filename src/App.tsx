@@ -4,17 +4,40 @@ import Image from './models/Image';
 import styled from 'styled-components';
 import ButtonProps from './models/Button.props';
 import { ImagePreview } from './components/ImagePreview';
+import { getLikedImagesFromLocalStorage, getDeclinedImagesFromLocalStorage, saveToLocalStorage } from './utils/storage';
+import { DECLINED_IMAGES_KEY, LIKED_IMAGES_KEY } from './utils/constants';
 
 function App() {
   const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
+  const [likedImages, setLikedImages] = useState<Image[]>(getLikedImagesFromLocalStorage());
+  const [declinedImages, setDeclinedImages] = useState<String[]>(getDeclinedImagesFromLocalStorage());
 
-  const onGetImageClickHandler = async () => {
-    const image = await getRandomImage();
-    if (!image) {
-      // show error
-      return;
-    }
+  const fetchNewImage = async () => {
+    let image;
+    let isAlreadyDeclined = false;
+    do {
+      image = await getRandomImage();
+      if (!image) {
+        // show error
+        return;
+      }
+      isAlreadyDeclined = declinedImages.includes(image.id);
+    } while (isAlreadyDeclined)
     setCurrentImage(image);
+  };
+
+  const onLikeClickHandler = () => {
+    const newLikedImages = [...likedImages, currentImage];
+    saveToLocalStorage(LIKED_IMAGES_KEY, newLikedImages);
+    setLikedImages(newLikedImages);
+    fetchNewImage();
+  };
+
+  const onDeclineClickHandler = () => {
+    const newDeclinedImages = [...declinedImages, currentImage.id];
+    saveToLocalStorage(DECLINED_IMAGES_KEY, newDeclinedImages);
+    setDeclinedImages(newDeclinedImages);
+    fetchNewImage();
   }
 
   return (
@@ -22,11 +45,21 @@ function App() {
       <Header><h3>IMAGE APPROVAL APPLICATION</h3></Header>
       <main>
         <div className="approved-images"></div>
-        <ImagePreview image={currentImage} onImageClick={onGetImageClickHandler} />
-        <div className="action-buttons">
-          <Button onClick={onGetImageClickHandler}>Cancel</Button>
-          <Button buttonType='like' onClick={onGetImageClickHandler}>Like</Button>
-        </div>
+        <ImagePreview image={currentImage} onImageClick={fetchNewImage} />
+        {
+          currentImage.url
+            ? (
+              <div className="action-buttons">
+                <Button onClick={onDeclineClickHandler}>Cancel</Button>
+                <Button buttonType='like' onClick={onLikeClickHandler}>Like</Button>
+              </div>
+            )
+            : (
+              <Instructions>
+                Click on the + to get the image recommendations
+              </Instructions>
+            )
+        }
       </main>
     </StyledWrapper>
   );
@@ -76,6 +109,11 @@ const Button = styled.button<ButtonProps>`
 const Header = styled.header`
   text-align: left;
   width: 100%;
+`;
+
+const Instructions = styled.p`
+  font-size: 0.8em;
+  color: #a5a5a5;
 `;
 
 export default App;
