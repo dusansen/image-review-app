@@ -17,7 +17,7 @@ export const ApprovedImages: FC<ApprovedImagesProps> = ({ images }) => {
 }
 
 const StyledWrapper = styled.div`
-  width: calc(100% - 6rem);
+  width: 100%;
   padding: 1rem 1rem;
   margin-bottom: 1rem;
   border-top: 2px solid #dcdde1;

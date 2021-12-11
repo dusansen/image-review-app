@@ -84,7 +84,8 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  width: 100%;
+  width: calc(100% - 4rem);
+  padding: 0 2rem;
   height: 100%;
 
   main {
