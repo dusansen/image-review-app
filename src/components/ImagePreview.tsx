@@ -17,13 +17,11 @@ export const ImagePreview: FC<ImagePreviewProps> = ({
 };
 
 const AddImagePlaceholder = styled.div`
+  ${({ theme }) => theme.mixins.imageStyles(theme.imageWidth, theme.imageHeight, theme.imageBorderRadius)}
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${props => props.theme.imageWidth};
-  height: ${props => props.theme.imageHeight};
   background-color: #dcdde1;
-  border-radius: ${props => props.theme.imageBorderRadius};
 
   img {
     width: 10rem;
@@ -32,9 +30,7 @@ const AddImagePlaceholder = styled.div`
 `;
 
 const Image = styled.img`
+  ${({ theme }) => theme.mixins.imageStyles(theme.imageWidth, theme.imageHeight, theme.imageBorderRadius)}
   max-width: 100%;
-  width: ${props => props.theme.imageWidth};
-  height: ${props => props.theme.imageHeight};
-  border-radius: ${props => props.theme.imageBorderRadius};
   object-fit: cover;
 `;

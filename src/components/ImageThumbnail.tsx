@@ -7,7 +7,5 @@ export const ImageThumbnail: FC<ImageThumbnailProps> = ({ image }) => {
 }
 
 const Thumbnail = styled.img`
-  width: 8rem;
-  height: 6rem;
-  border-radius: ${props => props.theme.imageBorderRadius};
+  ${({ theme }) => theme.mixins.imageStyles('8rem', '6rem', theme.imageBorderRadius)}
 `;

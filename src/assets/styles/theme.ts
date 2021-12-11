@@ -8,5 +8,9 @@ export const theme = {
   separatorBorder: `2px solid ${DARK_GRAY}`,
   colors: {
     darkGray: DARK_GRAY
-  }
+  },
+  mixins: {
+    imageStyles: (width: string, height: string, borderRadius: string) =>
+      `width: ${width}; height: ${height}; border-radius: ${borderRadius};`,
+  },
 };
