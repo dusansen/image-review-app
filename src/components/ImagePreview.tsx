@@ -31,6 +31,8 @@ const AddImagePlaceholder = styled.div`
 `;
 
 const Image = styled.img`
+  max-width: 100%;
   width: 40rem;
   height: 25rem;
+  object-fit: cover;
 `;
