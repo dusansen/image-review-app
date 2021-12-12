@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { getRandomImage } from './api/api';
 import Image from './models/Image';
 import styled from 'styled-components';
@@ -15,17 +15,21 @@ function App() {
   const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
   const [likedImages, setLikedImages] = useState<Image[]>(getLikedImagesFromLocalStorage());
   const [declinedImages, setDeclinedImages] = useState<String[]>(getDeclinedImagesFromLocalStorage());
+  const imagesThatAppeared = useMemo(
+    () => [...declinedImages, ...likedImages.map(({ id }) => id)],
+    [likedImages, declinedImages]
+  );
 
   const fetchNewImage = async () => {
     let image;
-    let isAlreadyDeclined = false;
+    let hasAlreadyAppeared = false;
     do {
       image = await getRandomImage();
       if (!image) {
         return;
       }
-      isAlreadyDeclined = declinedImages.includes(image.id);
-    } while (isAlreadyDeclined)
+      hasAlreadyAppeared = imagesThatAppeared.includes(image.id);
+    } while (hasAlreadyAppeared)
     setCurrentImage(image);
   };
 
@@ -85,7 +89,7 @@ const StyledWrapper = styled.div`
   align-items: center;
   background-color: #fff;
   width: calc(100% - 4rem);
-  padding: 0 ${props => props.theme.pagePadding};
+  padding: 0 ${({ theme }) => theme.pagePadding} ${({ theme }) => theme.pagePadding} ${({ theme }) => theme.pagePadding} ;
   height: 100%;
 
   main {

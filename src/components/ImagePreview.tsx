@@ -10,10 +10,10 @@ export const ImagePreview: FC<ImagePreviewProps> = ({
   return !url
     ? (
       <AddImagePlaceholder onClick={onImageClick}>
-        <img src={plusIcon} alt='add image' />
+        <img src={plusIcon} alt="plus-icon" />
       </AddImagePlaceholder>
     )
-    : <Image src={url} alt='photo' />
+    : <Image src={url} />
 };
 
 const AddImagePlaceholder = styled.div`
@@ -22,6 +22,7 @@ const AddImagePlaceholder = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #dcdde1;
+  max-width: 100%;
 
   img {
     width: 10rem;
