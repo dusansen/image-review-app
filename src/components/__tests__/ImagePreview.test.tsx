@@ -16,7 +16,6 @@ describe('ImagePreview component', () => {
       id: '',
       url: ''
     };
-    
 
     render(
       <ThemeProvider theme={theme}>
