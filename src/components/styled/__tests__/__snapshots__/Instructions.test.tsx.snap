@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Instructions should render Instructions with styles 1`] = `
+<p
+  className="sc-bdvvtL hHjMAU"
+/>
+`;
