@@ -10,28 +10,19 @@ import { Button } from './components/styled/Button';
 import { Header } from './components/styled/Header';
 import { Instructions } from './components/styled/Instructions';
 import { ToastContainer } from 'react-toastify';
+import { useAppDispatch, useAppSelector } from './store';
 
 function App() {
-  const [currentImage, setCurrentImage] = useState<Image>({ id: '', url: '' });
+  const { currentImage, isLoadingImage } = useAppSelector(state => state);
   const [likedImages, setLikedImages] = useState<Image[]>(getLikedImagesFromLocalStorage());
   const [declinedImages, setDeclinedImages] = useState<String[]>(getDeclinedImagesFromLocalStorage());
   const imagesThatAppeared = useMemo(
     () => [...declinedImages, ...likedImages.map(({ id }) => id)],
     [likedImages, declinedImages]
   );
+  const dispatch = useAppDispatch();
 
-  const fetchNewImage = async () => {
-    let image;
-    let hasAlreadyAppeared = false;
-    do {
-      image = await getRandomImage();
-      if (!image) {
-        return;
-      }
-      hasAlreadyAppeared = imagesThatAppeared.includes(image.id);
-    } while (hasAlreadyAppeared)
-    setCurrentImage(image);
-  };
+  const fetchNewImage = () => getRandomImage(dispatch, imagesThatAppeared);
 
   const onLikeClickHandler = () => {
     const newLikedImages = [...likedImages, currentImage];
@@ -57,8 +48,8 @@ function App() {
           currentImage.url
             ? (
               <div className="action-buttons">
-                <Button onClick={onDeclineClickHandler}>Cancel</Button>
-                <Button buttonType='like' onClick={onLikeClickHandler}>Like</Button>
+                <Button disabled={isLoadingImage} onClick={onDeclineClickHandler}>Cancel</Button>
+                <Button disabled={isLoadingImage} buttonType='like' onClick={onLikeClickHandler}>Like</Button>
               </div>
             )
             : (

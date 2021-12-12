@@ -1,0 +1,3 @@
+export const LOAD_IMAGE = 'LOAD_IMAGE';
+export const IMAGE_LOADED = 'IMAGE_LOADED';
+export const IMAGE_LOADING_FAILED = 'IMAGE_LOADING_FAILED';
