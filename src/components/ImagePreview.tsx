@@ -4,16 +4,16 @@ import styled from 'styled-components';
 import plusIcon from '../assets/icons/plus.svg';
 
 export const ImagePreview: FC<ImagePreviewProps> = ({
-  image: { url },
+  image: { url, id },
   onImageClick
 }) => {
   return !url
     ? (
-      <AddImagePlaceholder onClick={onImageClick}>
+      <AddImagePlaceholder data-testid="add-image-placeholder" onClick={onImageClick}>
         <img src={plusIcon} alt="plus-icon" />
       </AddImagePlaceholder>
     )
-    : <Image src={url} />
+    : <Image src={url} alt={id} />
 };
 
 const AddImagePlaceholder = styled.div`

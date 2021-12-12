@@ -6,6 +6,6 @@ export const ImageThumbnail: FC<ImageThumbnailProps> = ({ image }) => {
   return <Thumbnail src={image.url} alt={image.id} />
 }
 
-const Thumbnail = styled.img`
+export const Thumbnail = styled.img`
   ${({ theme }) => theme.mixins.imageStyles('8rem', '6rem', theme.imageBorderRadius)}
 `;
