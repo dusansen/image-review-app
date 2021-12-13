@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { getRandomImage } from './api/api';
+import { getRandomImage } from './api/unsplash';
 import Image from './models/Image';
 import styled from 'styled-components';
 import { ImagePreview } from './components/ImagePreview';
