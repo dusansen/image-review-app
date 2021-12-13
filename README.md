@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 1. Run "npm i" in the root directory to install node_modules
-2. In the root directory create .env file and add access and secret key according to .env.example file
+2. In the root directory create .env file and add access key according to .env.example file
 
 ## Available Scripts
 
