@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 1. Run "npm i" in the root directory to install node_modules
 2. In the root directory create .env file and add access key according to .env.example file
+  (you can create app on the following url https://unsplash.com/oauth/applications, after creating app you will get access key)
 
 ## Available Scripts
 
