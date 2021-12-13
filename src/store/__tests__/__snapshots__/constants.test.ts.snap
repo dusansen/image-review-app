@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Store constants should match snapshot 1`] = `
+Object {
+  "IMAGE_LOADED": "IMAGE_LOADED",
+  "IMAGE_LOADING_FAILED": "IMAGE_LOADING_FAILED",
+  "LOAD_IMAGE": "LOAD_IMAGE",
+}
+`;
